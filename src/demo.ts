@@ -1,6 +1,7 @@
-export.module = 
-{sum:(a:number, b:number):number =>{
+module.exports = 
+{
+  sum: function(a: number, b: number): number{
     return a + b;
   },
-msg: 'hi im a demo!'
+
 }
