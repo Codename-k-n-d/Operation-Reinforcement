@@ -1,6 +1,6 @@
 {
   // "include": ["./src"],
-  "include": ["src/", "client/index.ts", "server/server.ts"],
+  "include": ["src/", "client/index.tsx", "server/server.ts"],
   "compilerOptions": {
     "jsx": "react", // any JSX components should be converted into calls to React.createElement
     "module": "CommonJS", // tells the compiler that are module system is in CommonJS
