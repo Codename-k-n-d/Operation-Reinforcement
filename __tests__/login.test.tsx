@@ -6,7 +6,8 @@ import Login from '../src/Views/Login';
 
 describe('<Login />', () => {
   const testRenderer = TestRenderer.create(<Login />);
-  it("matches the snapshot?", () => {
+  // snapshot testing
+  it("matches the snapshot", () => {
     // @ts-ignore
     expect(testRenderer.toJSON()).toMatchSnapshot();
   });
