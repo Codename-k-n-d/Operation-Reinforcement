@@ -50,7 +50,7 @@ app.post('/create',
   sessionController.isLoggedIn,
   postController.createPost,
   (req: Request, res: Response) => {
-    //send single post
+    //send single
     res.json(res.locals.post);
   }
 );
