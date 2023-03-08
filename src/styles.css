@@ -7,3 +7,11 @@
     box-shadow:3px 3px 3px #272d40 ;
 
 }
+
+
+.submit-button{
+    width: 100px;
+    height: 25px;
+    border-radius:15px 50px;
+    padding: 0px;
+}

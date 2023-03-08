@@ -1,6 +1,6 @@
 {
   // "include": ["./src"],
-  "include": ["src/**/*", "server/server.ts"],
+  "include": ["src/", "client/index.tsx", "server/server.ts", "__tests__/**/*"],
   "compilerOptions": {
     "jsx": "react", // any JSX components should be converted into calls to React.createElement
     "module": "CommonJS", // tells the compiler that are module system is in CommonJS
@@ -8,7 +8,8 @@
     "noImplicitAny": true, // if you can't infer the type of a variable, don't just put any
     "removeComments": true,
     "preserveConstEnums": true,
-    "lib":["dom"]
+    "strictNullChecks": false,
+    "lib": ["DOM"],
     // tsc init is a very cool command look into it more
     /* typescript doesn't inherently support express, need to download libraries in package.json */
   },
