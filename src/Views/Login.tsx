@@ -5,7 +5,7 @@ function Login(): JSX.Element {
     <div>
       <h1>This is Login</h1>
       <form>
-        <input className='username-input'/>
+        <input className='username-input' placeholder="username"/>
         <input className='password-input'/>
         <input className='submit-button' type='submit'/>
       </form>
