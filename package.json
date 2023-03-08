@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/Codename-k-n-d/Operation-Reinforcement#readme",
   "dependencies": {
+    "cookie-parser": "^1.4.6",
     "cross-env": "^7.0.3",
     "express": "^4.18.2",
     "postgres": "^3.3.3",
