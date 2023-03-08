@@ -1,7 +1,7 @@
 import React, {FC} from "react";
 import Card from '../Components/Card'
 
-function Home(): JSX.Element {
+const Home = (): JSX.Element =>{
   
   return (
     <div>
