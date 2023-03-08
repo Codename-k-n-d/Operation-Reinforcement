@@ -1,8 +1,92 @@
-const Express = require('express');
-const app = new Express();
+/**
+ * import third-party modules
+ */
+const express = require('express');
+const cookieParser = require('cookie-parser');
+const path = require('path');
+/**
+ * import custom modules
+ */
+const userController = require('./controllers/userController');
+const cookieController = require('./controllers/cookieController');
+const sessionController = require('./controllers/sessionController');
+const postController = require('./controllers/postController');
+/**
+ * import interfaces
+ */
+import { Application, Request, Response, NextFunction } from 'express';
+/**
+ * file scope variables
+ */
+const app: Application = new express();
 const PORT: number = 3000;
+/**
+ * parsers for incoming requests:
+ * - json
+ * - urlencoded/form data
+ * - cookies
+*/
+app.use(express.json());
+app.use(express.urlencoded()); 
+app.use(cookieParser());
+/**
+ * routes
+ */
+app.post('/login', 
+  userController.verifyUser, 
+  cookieController.setSSIDCookie, 
+  sessionController.startSession, 
+  (req: Request, res: Response) => {
+    res.locals.verifyUser 
+      ? res.redirect('/home')
+      : res.redirect('/signup');
+});
+app.post('/signup', 
+  userController.createUser, 
+  (req, res) => {
+  res.redirect('/login');
+});
+app.post('/create',
+  sessionController.isLoggedIn,
+  postController.createPost,
+  (req: Request, res: Response) => {
+    //send single
+    res.json(res.locals.post);
+  }
+);
+app.get('/home', 
+  sessionController.isLoggedIn,
+  postController.getAllPosts,
+  (req: Request, res: Response) => {
+    res.json(res.locals.posts);
+});
 
 
+/**
+ * custom error type interface
+ */
+interface Error {
+  log: string;
+  status: number;
+  message: { err: string };
+}
+/**
+ * Global error handling middleware
+ */
+app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+  const defaultErr: Error = {
+    log: 'Express error handler caught unknown middleware error',
+    status: 400,
+    message: { err: 'An error occurred' },
+  };
+  const errorObj: Error = Object.assign({}, defaultErr, err);
+  console.log(errorObj.log);
+  return res.status(errorObj.status).json(errorObj.message);
+});
 
-
-app.listen(PORT, (console.log('listening on port ', PORT)));
+/**
+ * start server
+ */
+app.listen(PORT, () => {
+  console.log(`Server listening on port: ${PORT}...`);
+});
