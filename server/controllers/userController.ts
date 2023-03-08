@@ -21,6 +21,7 @@ const userController: UserController = {
     return next();
   },
   verifyUser: (req, res, next) => {
+    console.log('verifying user in userController')
     // sanitze input from req body
     const {username, password} = req.body;
     // query to database to find user

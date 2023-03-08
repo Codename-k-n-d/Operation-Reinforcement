@@ -9,6 +9,7 @@
     "removeComments": true,
     "preserveConstEnums": true,
     "strictNullChecks": false,
+    "lib": ["DOM"],
     // tsc init is a very cool command look into it more
     /* typescript doesn't inherently support express, need to download libraries in package.json */
   },

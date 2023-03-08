@@ -29,10 +29,15 @@ const PORT: number = 3000;
 app.use(express.json());
 app.use(express.urlencoded()); 
 app.use(cookieParser());
+const checkpoint = (req:any,res:any,next:any)=>{
+    console.log('hit checkpoint')
+    return next()
+    };
 /**
  * routes
  */
 app.post('/login', 
+  checkpoint,
   userController.verifyUser, 
   cookieController.setSSIDCookie, 
   sessionController.startSession, 
