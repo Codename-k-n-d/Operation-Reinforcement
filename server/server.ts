@@ -41,6 +41,26 @@ app.post('/login',
       ? res.redirect('/home')
       : res.redirect('/signup');
 });
+app.post('/signup', 
+  userController.createUser, 
+  (req, res) => {
+  res.redirect('/login');
+});
+app.post('/create',
+  sessionController.isLoggedIn,
+  postController.createPost,
+  (req: Request, res: Response) => {
+    //send single post
+    res.json(res.locals.post);
+  }
+);
+app.get('/home', 
+  sessionController.isLoggedIn,
+  postController.getAllPosts,
+  (req: Request, res: Response) => {
+    res.json(res.locals.posts);
+});
+
 
 /**
  * custom error type interface
